@@ -1,0 +1,29 @@
+You will probably need to edit the Makefile to declare
+the correct paths to the dependencies.
+The following libs are needed to link CurvedSalsa:
+
+
+curve25519-donna
+================
+The original curve25519 was written by D. J. Bernstein (http://cr.yp.to/ecdh.html)
+The portable version used here is written by Adam Langley and can be found at
+http://code.google.com/p/curve25519-donna/
+
+Boost
+=====
+The Boost C++ Libraries are a collection of open source libraries that extend
+the functionality of C++ available at http://www.boost.org/
+
+
+The used libraries are in the public domain. The same is true for CurvedSalsa.
+Konrad Miller, Karlsruhe, 2008-11-26
+<konrad@miller-online.eu>
+
+
+Other contributors
+==================
+Martin Bäuml - Boost command line argument parsing
+<baeuml@gmail.com>
+
+Timo Stripf - Windows port (cmake, pstdint.h, ...)
+<tstripf at gmx.de>

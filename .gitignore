@@ -1,0 +1,4 @@
+*.o
+curvedsalsa
+tags
+tests

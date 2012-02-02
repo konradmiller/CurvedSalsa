@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CurvedSalsaDialog</class>
+ <widget class="QWidget" name="CurvedSalsaDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>587</width>
+    <height>253</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>CurvedSalsa</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_3">
+   <item row="0" column="0">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Secret &amp;Key:</string>
+         </property>
+         <property name="buddy">
+          <cstring>secKeyLine</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" colspan="2">
+        <widget class="QLineEdit" name="secKeyLine">
+         <property name="echoMode">
+          <enum>QLineEdit::Password</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Public Key:</string>
+         </property>
+         <property name="buddy">
+          <cstring>pubKeyLine</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1" colspan="2">
+        <widget class="QLineEdit" name="pubKeyLine"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>&amp;Source File:</string>
+         </property>
+         <property name="buddy">
+          <cstring>inFileLine</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="inFileLine"/>
+       </item>
+       <item row="2" column="2">
+        <widget class="QPushButton" name="inFileButton">
+         <property name="text">
+          <string>&amp;Browse</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>&amp;Target File:</string>
+         </property>
+         <property name="buddy">
+          <cstring>outFileLine</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="outFileLine"/>
+       </item>
+       <item row="3" column="2">
+        <widget class="QPushButton" name="outFileButton">
+         <property name="text">
+          <string>B&amp;rowse</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="Operation">
+       <property name="title">
+        <string>&amp;Operation</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="0" column="0">
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <widget class="QRadioButton" name="encrypt">
+            <property name="text">
+             <string>&amp;Encrypt</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QRadioButton" name="decrypt">
+            <property name="text">
+             <string>&amp;Decrypt</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="okButton">
+         <property name="text">
+          <string>&amp;Encrypt</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="quitButton">
+         <property name="text">
+          <string>&amp;Quit</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>inFileLine</tabstop>
+  <tabstop>inFileButton</tabstop>
+  <tabstop>outFileLine</tabstop>
+  <tabstop>outFileButton</tabstop>
+  <tabstop>encrypt</tabstop>
+  <tabstop>decrypt</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
