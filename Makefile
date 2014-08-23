@@ -1,4 +1,4 @@
-LDFLAGS   += -lboost_program_options-mt
+LDFLAGS   += -lboost_program_options
 CXXFLAGS  += -I. -Wall -W
 
 OBJECTS = curvedsalsa.o curve25519-donna.o cubehash.o program_options.o random.o salsa.o
