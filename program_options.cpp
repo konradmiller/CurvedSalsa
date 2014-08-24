@@ -2,72 +2,71 @@
 #include <vector>
 #include <string>
 #include <cstdio>
-using namespace std;
-
 
 #include <boost/program_options.hpp>
-using namespace boost::program_options;
+namespace po = boost::program_options;
 
 #include "program_options.h"
 
 // file local variables
-static options_description            opt_desc("Options");
-static options_description            opt_desc_hidden;
-static positional_options_description pos_opts;
-static vector<string>                 unknown_options;
+static po::options_description            opt_desc("Options");
+static po::options_description            opt_desc_hidden;
+static po::positional_options_description pos_opts;
+static std::vector<std::string>       unknown_options;
 
-bool init_program_options(int argc, char** argv, variables_map *var_map)
+bool init_program_options(int argc, char** argv, po::variables_map *var_map)
 {
-    // define named options
-    opt_desc.add_options()
+	// define named options
+	opt_desc.add_options()
 		("encrypt,e", "Encrypt")
 		("decrypt,d", "Decrypt")
-		("input,i", value<string>(), "Use <arg> as input. Will use stdin if omitted.")
-		("output,o", value<string>(), "Use <arg> as output. Will use stdout if omitted.")
+		("input,i", po::value<std::string>(), "Use <arg> as input. Will use stdin if omitted.")
+		("output,o", po::value<std::string>(), "Use <arg> as output. Will use stdout if omitted.")
 		("create-key,c", "Create new private/public key-pair for Diffie-Hellman key exchange.")
-		("pass,p", value<string>(), "Take private key from command line.")
-		("key,k", value<string>(), "Take public key from command line.")
+		("pass,p", po::value<std::string>(), "Take private key from command line.")
+		("key,k", po::value<std::string>(), "Take public key from command line.")
 		("quiet,q", "Suppress unneeded output.")
 		("help,h", "print this help message")
-    ;
+		;
 
-    // define hidden options, i.e. options that don't appear in the usage message
-    opt_desc_hidden.add_options()
+	// define hidden options, i.e. options that don't appear in the usage message
+	opt_desc_hidden.add_options()
 		("test,t", "")
-		("catch_all_positional", value<vector<string> >(), "")  // catch surplus positionals
-    ;
+		("catch_all_positional", po::value<std::vector<std::string> >(), "")  // catch surplus positionals
+		;
+
 	// define positional options, i.e. options that don't need to be
-    // specified using the options name:  ./my_program a.jpg
-    pos_opts.add("catch_all_positional", -1); // catch surplus positionals
+	// specified using the options name:  ./my_program a.jpg
+	pos_opts.add("catch_all_positional", -1); // catch surplus positionals
 
-    options_description opt_all;
-    opt_all.add(opt_desc).add(opt_desc_hidden);
-    
-    // parse options 
-    // if unknown options are detected, return a vector of unrecognized options
-    // otherwise store options and parameters in var_map
-    parsed_options parsed = command_line_parser(argc, argv).
-	options(opt_all).positional(pos_opts).allow_unregistered().run();
-    unknown_options = collect_unrecognized(parsed.options, exclude_positional);
+	po::options_description opt_all;
+	opt_all.add(opt_desc).add(opt_desc_hidden);
 
-    // display error and usage message if unknown options were given
-    if (unknown_options.size() > 0) {
-		cout << "Unknown option: " << unknown_options[0] << endl << endl;
+	// parse options
+	// if unknown options are detected, return a vector of unrecognized options
+	// otherwise store options and parameters in var_map
+	po::parsed_options parsed = po::command_line_parser(argc, argv).
+					options(opt_all).positional(pos_opts).allow_unregistered().run();
+	unknown_options = collect_unrecognized(parsed.options, po::exclude_positional);
+
+	// display error and usage message if unknown options were given
+	if (unknown_options.size() > 0) {
+		std::cout << "Unknown option: " << unknown_options[0] << std::endl << std::endl;
 		print_usage(argv[0]);
 		exit(1);
-    }
+	}
 
-    // store parameter in var_map
-    store(parsed, *var_map);
-    notify(*var_map);
+	// store parameter in var_map
+	po::store(parsed, *var_map);
+	po::notify(*var_map);
 
-    // print usage message if --help was specified on the command line
-    if (var_map->count("help")) {
-        print_usage(argv[0]);
-        exit(0);
-    }
-    
-    return true;
+	// print usage message if --help was specified on the command line
+	if (var_map->count("help")) {
+		print_usage(argv[0]);
+		exit(0);
+	}
+
+	return true;
 }
 
 /*
@@ -80,7 +79,7 @@ void print_usage(const char *program_name)
 		"using djb's curve25519.\n\n", program_name);
 
 	// output option descriptions
-    cout << opt_desc << endl;
+	std::cout << opt_desc << std::endl;
 
 	printf ( "Example:\n"
 		" # curvedsalsa -c -p foo\n"
