@@ -9,12 +9,13 @@ namespace po = boost::program_options;
 #include "program_options.h"
 
 // file local variables
-static po::options_description            opt_desc("Options");
-static po::options_description            opt_desc_hidden;
+static po::options_description opt_desc("Options"),
+				opt_desc_hidden;
 static po::positional_options_description pos_opts;
-static std::vector<std::string>       unknown_options;
+static std::vector<std::string> unknown_options;
 
-bool init_program_options(int argc, char** argv, po::variables_map *var_map)
+
+bool init_program_options( int argc, char** argv, po::variables_map *var_map )
 {
 	// define named options
 	opt_desc.add_options()
