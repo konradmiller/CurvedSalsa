@@ -1,5 +1,6 @@
 LDFLAGS   += -lboost_program_options
-CXXFLAGS  += -I. -Wall -W
+CXXFLAGS  += -I. -Wall -W -Wextra -Werror -Wno-long-long -Wno-variadic-macros -fexceptions -std=c++11
+CFLAGS    += -I. -Wall -W -Wextra -Werror -Wno-long-long -Wno-variadic-macros -fexceptions -std=c99
 
 OBJECTS = curvedsalsa.o curve25519-donna.o cubehash.o program_options.o random.o salsa.o
 
@@ -10,7 +11,7 @@ curvedsalsa.o: curvedsalsa.h curvedsalsa.cpp
 	g++ ${CXXFLAGS} -c -o curvedsalsa.o curvedsalsa.cpp
 
 curve25519-donna.o: curve25519-donna.c
-	gcc ${CXXFLAGS} -c -o curve25519-donna.o curve25519-donna.c
+	gcc ${CFLAGS} -c -o curve25519-donna.o curve25519-donna.c
 
 cubehash.o: cubehash.h cubehash.cpp
 	g++ ${CXXFLAGS} -c -o cubehash.o cubehash.cpp
